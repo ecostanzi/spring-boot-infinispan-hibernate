@@ -1,0 +1,30 @@
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: true
+      hibernate.cache.region.factory_class: org.infinispan.hibernate.cache.v53.InfinispanRegionFactory
+      hibernate.cache.infinispan.statistics: true
+      hibernate.cache.use_minimal_puts: true
+      hibernate.cache.infinispan.entity.expiration.lifespan: 3600000
+      hibernate.cache.infinispan.entity.eviction.max_entries: 1000
+      hibernate.cache.infinispan.jgroups_cfg: default-jgroups.xml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+server:
+  port: 8666
+
+infinispan:
+  embedded:
+    cluster-name: my-infinispan-cluster
+    config-xml: infinispan-config.xml
+    enabled: true
