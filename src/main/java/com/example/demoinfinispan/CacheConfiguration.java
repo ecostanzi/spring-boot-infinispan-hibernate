@@ -37,7 +37,7 @@ public class CacheConfiguration {
             // initialize application cache
             manager.defineConfiguration("spring-cache", new ConfigurationBuilder()
                     .clustering().cacheMode(CacheMode.DIST_SYNC).hash().numOwners(2)
-                    .jmxStatistics().enabled(false).available(false).eviction()
+                    .jmxStatistics().enabled(false).available(true).eviction()
                     .type(EvictionType.COUNT).size(1000).expiration()
                     .lifespan(1, TimeUnit.MINUTES).build());
 
