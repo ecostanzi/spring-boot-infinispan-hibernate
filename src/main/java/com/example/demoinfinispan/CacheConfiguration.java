@@ -19,6 +19,17 @@ public class CacheConfiguration {
 
     private final Logger log = LoggerFactory.getLogger(CacheConfiguration.class);
 
+    // Initialize the cache in a non Spring-managed bean
+    private static EmbeddedCacheManager cacheManager;
+
+    public static EmbeddedCacheManager getCacheManager(){
+        return cacheManager;
+    }
+
+    public static void setCacheManager(EmbeddedCacheManager cacheManager) {
+        CacheConfiguration.cacheManager = cacheManager;
+    }
+
     @Bean
     public InfinispanCacheConfigurer cacheConfigurer() {
 
@@ -30,6 +41,7 @@ public class CacheConfiguration {
                     .type(EvictionType.COUNT).size(1000).expiration()
                     .lifespan(1, TimeUnit.MINUTES).build());
 
+            setCacheManager(manager);
         };
     }
 
