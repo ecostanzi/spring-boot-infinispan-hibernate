@@ -19,4 +19,6 @@ public class CacheFactoryConfiguration extends InfinispanRegionFactory {
         return CacheConfiguration.getCacheManager();
     }
 
+
+
 }

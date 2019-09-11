@@ -1,5 +1,6 @@
 package com.example.demoinfinispan;
 
+import org.infinispan.manager.EmbeddedCacheManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -25,6 +26,9 @@ public class DemoinfinispanApplication {
 
     	@Autowired
         MyDummyService myDummyService;
+
+    	@Autowired
+        EmbeddedCacheManager embeddedCacheManager;
 
         @GetMapping("/project/{id}")
         public Project getProject(@PathVariable("id") Long projectId) {

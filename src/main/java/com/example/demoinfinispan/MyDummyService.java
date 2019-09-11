@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 
 @Service
 @Transactional
-@CacheConfig(cacheNames = "repl-app-data")
+@CacheConfig(cacheNames = "spring-cache")
 class MyDummyService {
 
     private final EntityManager em;
