@@ -36,7 +36,7 @@ public class CacheConfiguration {
     @Bean
     public InfinispanGlobalConfigurer globalConfiguration() {
         return () -> GlobalConfigurationBuilder
-                .defaultClusteredBuilder().defaultCacheName("infinispan-demo-cluster-cache")
+                .defaultClusteredBuilder()
                 .transport().defaultTransport()
                 .addProperty("configurationFile", "jgroups-config.xml")
                 .clusterName("infinispan-demo-cluster").globalJmxStatistics()
@@ -60,21 +60,27 @@ public class CacheConfiguration {
             // initialize Hibernate L2 cache
             manager.defineConfiguration("entity", new ConfigurationBuilder().clustering().cacheMode(CacheMode.INVALIDATION_SYNC)
                     .jmxStatistics().enabled(true)
+                    .template(true)
                     .locking().concurrencyLevel(1000).lockAcquisitionTimeout(15000).build());
             manager.defineConfiguration("replicated-entity", new ConfigurationBuilder().clustering().cacheMode(CacheMode.REPL_SYNC)
                     .jmxStatistics().enabled(true)
+                    .template(true)
                     .locking().concurrencyLevel(1000).lockAcquisitionTimeout(15000).build());
             manager.defineConfiguration("local-query", new ConfigurationBuilder().clustering().cacheMode(CacheMode.LOCAL)
                     .jmxStatistics().enabled(true)
+                    .template(true)
                     .locking().concurrencyLevel(1000).lockAcquisitionTimeout(15000).build());
             manager.defineConfiguration("replicated-query", new ConfigurationBuilder().clustering().cacheMode(CacheMode.REPL_ASYNC)
                     .jmxStatistics().enabled(true)
+                    .template(true)
                     .locking().concurrencyLevel(1000).lockAcquisitionTimeout(15000).build());
             manager.defineConfiguration("timestamps", new ConfigurationBuilder().clustering().cacheMode(CacheMode.REPL_ASYNC)
                     .jmxStatistics().enabled(true)
+                    .template(true)
                     .locking().concurrencyLevel(1000).lockAcquisitionTimeout(15000).build());
             manager.defineConfiguration("pending-puts", new ConfigurationBuilder().clustering().cacheMode(CacheMode.LOCAL)
                     .jmxStatistics().enabled(true)
+                    .template(true)
                     .simpleCache(true).transaction().transactionMode(TransactionMode.NON_TRANSACTIONAL).expiration().maxIdle(60000).build());
 
             setCacheManager(manager);

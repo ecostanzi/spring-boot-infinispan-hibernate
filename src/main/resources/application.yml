@@ -23,9 +23,3 @@ management:
 
 server:
   port: 8666
-
-infinispan:
-  embedded:
-    cluster-name: my-infinispan-cluster
-    config-xml: infinispan-config.xml
-    enabled: true
